@@ -1,0 +1,17 @@
+build:
+  docker:
+    web: Dockerfile
+
+run:
+  celery:
+    command:
+      - celery worker -l debug -A beatthemarket.celery_app:app
+    image: web
+  web: >
+    gunicorn --bind 0.0.0.0:$PORT \
+      --preload \
+      --workers 3 \
+      --log-level=debug \
+      --access-logfile - \
+      --reload \
+      beatthemarket.run_app:app

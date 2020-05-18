@@ -1,0 +1,97 @@
+{% extends 'layouts/datatable.html' %}
+{% import 'macros/form.html' as f with context %}
+
+{% block title %}My Portfolio{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Add My Holdings</h1>
+    <div class="container">
+        {% call f.form_tag('portfolio.holding') %}
+        <div class="row">
+            {% call f.form_group(form.type, css_class='lead text-primary font-weight-bolder col-md-1')%}
+            {% endcall %}
+
+            {% call f.form_group(form.ticker, css_class='ml-2 lead col-md-2', placeholder='MSFT') %}
+            {% endcall %}
+
+            {% call f.form_group(form.price, css_class='ml-2 lead col-md-3', placeholder='$') %}
+            {% endcall %}
+
+            {% call f.form_group(form.quantity, css_class='ml-2 lead col-md-2') %}
+            {% endcall %}
+
+            {% call f.form_group(form.date, css_class='ml-2 lead col-md-2', placeholder='yyyymmdd') %}
+            {% endcall %}
+            <button id="holding-add-btn" class="btn btn-outline-primary ml-3 col-md-1"
+                    type="submit">Add
+            </button>
+        </div>
+        {% endcall %}
+    </div>
+</div>
+
+<!--Data Table-->
+<div class="container mt-5">
+    <div>
+        <h1>My Holding Records</h1>
+    </div>
+    <table id="my-holdings" class="table table-striped table-inverse table-bordered table-hover" cellspacing="0"
+           width="100%">
+        <thead>
+        <tr>
+            <th class="th-sm">Type
+            </th>
+            <th class="th-sm">Ticker
+            </th>
+            <th class="th-sm">Quantity
+            </th>
+            <th class="th-sm">Executed Price
+            </th>
+            <th class="th-sm">Date
+            </th>
+            <th class="th-sm">Remove
+            </th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th class="th-sm">Type
+            </th>
+            <th class="th-sm">Ticker
+            </th>
+            <th class="th-sm">Quantity
+            </th>
+            <th class="th-sm">Executed Price
+            </th>
+            <th class="th-sm">Date
+            </th>
+            <th class="th-sm">Remove
+            </th>
+        </tr>
+        </tfoot>
+        <tbody class="tbody">
+        {% for holding_record in holding_records %}
+        <tr class="list">
+            <td>{{ holding_record.type }}</td>
+            <td>{{ holding_record.ticker }}</td>
+            <td>{{ holding_record.quantity }}</td>
+            <td>${{ holding_record.price }}</td>
+            <td>{{ holding_record.date.strftime('%Y-%m-%d') }}</td>
+            <td>
+                {% if current_user.is_authenticated %}
+                <form style='display:inline;' action="/portfolio/holding/{{holding_record.id}}/delete" method="POST"
+                      value="{{ holding_record.id }}">
+                    {{ form.hidden_tag() }}
+                    <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-trash"></i></button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

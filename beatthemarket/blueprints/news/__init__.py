@@ -1,0 +1,1 @@
+from beatthemarket.blueprints.news.views import news

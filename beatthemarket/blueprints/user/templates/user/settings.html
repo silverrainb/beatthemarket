@@ -1,0 +1,28 @@
+{% extends 'layouts/app.html' %}
+
+{% block title %}Account settings{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="">
+            <h1 class="mt-5 mb-3">Settings</h1>
+            <div class="mt-3 list-group">
+                {% if current_user.username %}
+                <h5 class="list-group-item quarter-faded">Username <span class="text-info">
+                    {{ current_user.username }}</span>
+                </h5>
+                {% else %}
+                <h5 class="list-group-item quarter-faded">Username <a href="{{ url_for('user.welcome') }}"
+                                                                      class="btn btn-info">Pick a Username</a>
+                </h5>
+                {% endif %}
+                <h5 class="list-group-item quarter-faded">Email <span class="text-info">
+                                <a href="{{ url_for('user.update_credentials') }}" class="btn btn-info">
+                                    {{ current_user.email }}</a></span>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
