@@ -1,0 +1,26 @@
+{% extends 'layouts/app.html' %}
+
+{% block title %}News{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h1 clsss="mb-5">Market News</h1>
+        {% for ticker_articles in tickers_articles %}
+    <ul class="news" style="list-style-type: none;">
+            {% for ticker_article in ticker_articles %}
+        <li>
+            <div class="row justify-content-start">
+                <p class="text-primary"><b>{{ ticker_article.related }}</b></p>
+                <p class="text-info ml-3">{{ ticker_article.source }}</p>
+                <p class="text-secondary ml-3">{{ convert_time(ticker_article.datetime) }}</p>
+            </div>
+            <div class="row">
+                <p class="text-dark"><a href="{{ ticker_article.url }}">{{ ticker_article.headline }}</a></p>
+            </div>
+        </li>
+            {% endfor %}
+    </ul>
+        {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,1 @@
+from beatthemarket.blueprints.page.views import page

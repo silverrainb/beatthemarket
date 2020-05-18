@@ -1,0 +1,252 @@
+b'\n\n<!DOCTYPE html>\n
+<html>\n
+<head>\n
+    <meta charset="utf-8">
+    \n
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    \n
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    \n
+    <meta name="description" \n content="">
+    \n
+    <meta name="csrf-token"
+          content="ImM1MmUzMzI2MmFhZjE4MDRjNDhkZmY3MDNhMDE4NDI4OWFjNjhiYTEi.XrRJAw.hzbMUL_ECNY6DxAIMcVYjKkUC28">
+    \n\n <title>My Portfolio</title>\n
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    \n
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    \n
+    <style>\n
+
+    @import url(\'https://fonts.googleapis.com/css2?family=Viga&display=swap\');
+    \n    </style>
+    \n
+    <link rel="stylesheet" href="/static/styles/main.css">
+    \n
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    \n
+    <link rel="stylesheet" href="/static/MDB/css/addons/datatables.min.css">
+    \n
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    \n
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    \n
+</head>
+\n\n
+<body>\n
+<nav class="navbar navbar-expand-md navbar-dark navbar-setup">\n \n <a class="navbar-brand" href="/portfolio/holding">
+    <h2>\n <i class="fas fa-chart-line text-light"></i><span class="nav-title"> BeatTheMarket</span>\n </h2></a>\n \n
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".nav-base" \n
+            aria-controls="nav-base" aria-expanded="false" aria-label="Toggle navigation">\n <span
+            class="navbar-toggler-icon"><i class="fas fa-bars" style="color:#fff; font-size:28px;"></i></span>\n
+    </button>
+    \n\n
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 nav-base">\n
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">\n
+            <li class="nav-item active">\n <a class="nav-link" href="/portfolio/holding">Holdings<span\n
+                class="sr-only">(current)</span></a>\n
+            </li>
+            \n
+            <li class="nav-item active">\n <a class="nav-link" href="/portfolio/pl">P&L</a>\n</li>
+            \n
+            <li class="nav-item active">\n <a class="nav-link" href="/portfolio/visualization">Insights</a>\n</li>
+            \n
+            <li class="nav-item active">\n <a class="nav-link" href="/news/">News</a>\n</li>
+            \n
+        </ul>
+        \n
+    </div>
+    \n
+    <div class="navbar-collapse collapse w-100 order-3 nav-base">\n
+        <ul class="navbar-nav ml-auto">\n \n\n            <!--            If logged in: Account-->\n
+            <li class="nav-item dropdown">\n <a class="nav-link dropdown-toggle" id="navRight" data-toggle="dropdown" \n
+                                                aria-haspopup="true" aria-expanded="false" style="color:#fff;">\n <i
+                    class="fas fa-user"></i> admin@local.host </a>\n
+                <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navRight">\n <a
+                        class="dropdown-item" href="/settings" style="color:black;">Settings</a>\n <a
+                        class="dropdown-item" href="/logout" style="color:black;">Log out</a>\n
+                </div>
+                \n
+            </li>
+            \n            <!--            Account end-->\n \n\n
+        </ul>
+        \n
+    </div>
+    \n    </div>\n
+</nav>
+\n\n
+<main class="container">\n \n \n
+    <div id="flash-messages" class="justify-content-center mt-5">\n \n
+        <div class="alert alert-error text-center" role="alert">\n P&amp;L is available when holding records are
+            available.\n
+        </div>
+        \n \n
+    </div>
+    \n \n\n
+    <div class="md-margin-top"></div>
+    \n \n
+    <div class="container mt-5">\n <h1>Add My Holdings</h1>\n
+        <div class="container">\n
+            <form action="/portfolio/holding" method="post" \n id="" class="" role="form">\n <input id="next"
+                                                                                                    name="next"
+                                                                                                    type="hidden"
+                                                                                                    value="">\n \n
+                <div class="row">\n \n\n \n
+                    <div class="form-group lead text-primary font-weight-bolder col-md-1">\n <label for="type">\n
+                        Type\n </label>\n <select class="form-control" id="type" name="type">
+                        <option value="buy">Buy</option>
+                        <option value="sell">Sell</option>
+                    </select>\n \n\n \n \n \n
+                    </div>
+                    \n\n \n\n \n
+                    <div class="form-group ml-2 lead col-md-2">\n <label for="ticker"><strong>Ticker</strong>\n </label>\n
+                        <input class="form-control" id="ticker" name="ticker" placeholder="MSFT" required type="text"
+                               value="">\n \n\n \n \n \n
+                    </div>
+                    \n\n \n\n \n
+                    <div class="form-group ml-2 lead col-md-3">\n <label for="price"><strong>Price Per Share</strong>\n
+                    </label>\n <input class="form-control" id="price" name="price" placeholder="$" required type="text"
+                                      value="">\n \n\n \n \n \n
+                    </div>
+                    \n\n \n\n \n
+                    <div class="form-group ml-2 lead col-md-2">\n <label for="quantity"><strong>Quantity</strong>\n
+                    </label>\n <input class="form-control" id="quantity" name="quantity" required type="text" value="">\n
+                        \n\n \n \n \n
+                    </div>
+                    \n\n \n\n \n
+                    <div class="form-group ml-2 lead col-md-2">\n <label for="date"><strong>Date</strong>\n </label>\n
+                        <input class="form-control" id="date" name="date" placeholder="yyyymmdd" required type="text"
+                               value="">\n \n\n \n \n \n
+                    </div>
+                    \n
+                    <button id="holding-add-btn" class="btn btn-outline-primary ml-3 col-md-1" \n type="submit">Add\n
+                    </button>
+                    \n
+                </div>
+                \n \n
+            </form>
+            \n
+        </div>
+        \n
+    </div>
+    \n\n<!--Data Table--> \n
+    <div class="container mt-5">\n
+        <div>\n <h1>My Holding Records</h1>\n</div>
+        \n
+        <table id="my-holdings" class="table table-striped table-inverse table-bordered table-hover" cellspacing="0" \n
+               width="100%">\n
+            <thead>\n
+            <tr>\n
+                <th class="th-sm">Type\n</th>
+                \n
+                <th class="th-sm">Ticker\n</th>
+                \n
+                <th class="th-sm">Quantity\n</th>
+                \n
+                <th class="th-sm">Executed Price\n</th>
+                \n
+                <th class="th-sm">Date\n</th>
+                \n
+                <th class="th-sm">Remove\n</th>
+                \n
+            </tr>
+            \n
+            </thead>
+            \n
+            <tfoot>\n
+            <tr>\n
+                <th class="th-sm">Type\n</th>
+                \n
+                <th class="th-sm">Ticker\n</th>
+                \n
+                <th class="th-sm">Quantity\n</th>
+                \n
+                <th class="th-sm">Executed Price\n</th>
+                \n
+                <th class="th-sm">Date\n</th>
+                \n
+                <th class="th-sm">Remove\n</th>
+                \n
+            </tr>
+            \n
+            </tfoot>
+            \n
+            <tbody class="tbody">\n \n
+            <tr class="list">\n
+                <td>buy</td>
+                \n
+                <td>MSFT</td>
+                \n
+                <td>1</td>
+                \n
+                <td>$100.0</td>
+                \n
+                <td>2020-02-02</td>
+                \n
+                <td>\n \n
+                    <form style=\'display:inline;\' action="/portfolio/holding/1/delete" method="POST" \n value="1">\n
+                        <input id="next" name="next" type="hidden" value="">\n
+                        <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-trash"></i></button>
+                        \n
+                    </form>
+                    \n \n
+                </td>
+                \n
+            </tr>
+            \n \n
+            <tr class="list">\n
+                <td>Buy</td>
+                \n
+                <td>MSFT</td>
+                \n
+                <td>1</td>
+                \n
+                <td>$100.0</td>
+                \n
+                <td>2020-02-02</td>
+                \n
+                <td>\n \n
+                    <form style=\'display:inline;\' action="/portfolio/holding/2/delete" method="POST" \n value="2">\n
+                        <input id="next" name="next" type="hidden" value="">\n
+                        <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-trash"></i></button>
+                        \n
+                    </form>
+                    \n \n
+                </td>
+                \n
+            </tr>
+            \n \n
+            </tbody>
+            \n
+        </table>
+        \n
+    </div>
+    \n\n\n\n
+</main>
+\n\n<!--    Footer--> \n
+<footer class="page-footer font-small fixed-bottom">\n
+    <div class="container">\n \n
+        <div class="page-footer font-small fixed-bottom text-center text-muted">\n <i class="mx-1 far fa-copyright"></i>2020
+            Coded and Designed by<a\n href="https://roseejones.github.io/" class="mx-1"> Rose Jones</a>\n
+        </div>
+        \n
+    </div>
+    \n
+</footer>
+\n<!--    Adding jQuery, popper.js, bootstrap.js, bootstrap/datatables.js, js/DT.js--> \n
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+\n
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" \n
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" \n
+        crossorigin="anonymous"></script>
+\n
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+\n
+<script type="text/javascript" src="/static/MDB/js/addons/datatables.min.js"></script>
+\n
+<script src="/portfolio/static/js/DT.js"></script>
+\n
+</body>
+\n
+</html>'
+(Pdb)

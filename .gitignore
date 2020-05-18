@@ -1,0 +1,16 @@
+/.pytest_cache/
+/BeatTheMarket_CLI.egg-info/
+/build/
+/dist/
+instance/
+venv/
+.idea/
+beatthemarket/.idea/
+/~*
+__pycache__/
+/beatthemarket/dist/
+/beatthemarket/build/
+.env
+beatthemarket.docx
+beatthemarket diagram.sql
+db_diagram.png

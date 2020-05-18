@@ -1,0 +1,1 @@
+from beatthemarket.blueprints.user.views import user

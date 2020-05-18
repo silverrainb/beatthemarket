@@ -1,0 +1,112 @@
+{% extends 'layouts/datatable.html' %}
+{% block title %}P&L{% endblock %}
+
+{% block body %}
+<!--Data Table-->
+<div class="container mt-5">
+    <h1>My Investments</h1>
+    <div class="chart" id="graph">
+        <script>
+            var graphs = {{plot | safe}};
+            Plotly.plot('graph',graphs,{});
+        </script>
+    </div>
+
+    <h1>P&L Table</h1>
+    <table id="my-holdings" class="table table-striped table-inverse table-bordered table-hover" cellspacing="0"
+           width="100%">
+        <thead>
+        <tr class="align-content-center">
+            <th class="th-sm">Ticker
+            </th>
+            <th class="th-sm">Shares
+            </th>
+            <th class="th-sm">Price Per Share
+            </th>
+            <th class="th-sm">P&L %
+            </th>
+            <th class="th-sm">UPL
+            </th>
+            <th class="th-sm">RPL
+            </th>
+            <th class="th-sm">Total PL
+            </th>
+            </th>
+            <th class="th-sm">ALLOC. by Shares
+            </th>
+            </th>
+            <th class="th-sm">ALLOC. by Dollars
+            </th>
+            </th>
+            <th class="th-sm">Day Range
+            </th>
+            </th>
+            <th class="th-sm">52-week Range
+            </th>
+            </th>
+            <th class="th-sm">Volume
+            </th>
+            </th>
+            <th class="th-sm">Market Cap
+            </th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th class="th-sm">Ticker
+            </th>
+            <th class="th-sm">Shares
+            </th>
+            <th class="th-sm">Price Per Share
+            </th>
+            <th class="th-sm">P&L %
+            </th>
+            <th class="th-sm">UPL
+            </th>
+            <th class="th-sm">RPL
+            </th>
+            <th class="th-sm">Total PL
+            </th>
+            </th>
+            <th class="th-sm">ALLOC. Shares
+            </th>
+            </th>
+            <th class="th-sm">ALLOC. Dollars
+            </th>
+            </th>
+            <th class="th-sm">Day Range
+            </th>
+            </th>
+            <th class="th-sm">52-week Range
+            </th>
+            </th>
+            <th class="th-sm">Volume
+            </th>
+            </th>
+            <th class="th-sm">Market Cap
+            </th>
+        </tr>
+        </tfoot>
+        <tbody class="tbody">
+        {% for key, value in complete_pl.items() %}
+        <tr class="list">
+            <td>{{ key }}</td>
+            <td>{{ value.shares }}</td>
+            <td>${{ value.pps }}</td>
+            <td>{{ value.profit_rate }}%</td>
+            <td>${{ value.upl }}</td>
+            <td>${{ value.rpl or 0 }}</td>
+            <td>${{ value.tpl }}</td>
+            <td>{{ (value.shares/total_shares*100)|round(2) }}%</td>
+            <td>{{ (value.upl/total_cash*100)|round(2) }} %</td>
+            <td>{{ value["Day's Range"] }}</td>
+            <td>{{ value['52 Week Range'] }}</td>
+            <td>{{ value.Volume }}</td>
+            <td>{{ value['Market Cap'] or "N/A" }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

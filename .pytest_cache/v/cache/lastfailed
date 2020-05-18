@@ -1,0 +1,4 @@
+{
+  "beatthemarket/tests/news/test_news.py::TestNews::()::test_redirection_followed": true,
+  "beatthemarket/tests/page/test_page.py::TestPage::()::test_home_page": true
+}
