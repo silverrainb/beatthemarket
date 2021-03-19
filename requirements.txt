@@ -85,7 +85,7 @@ pandocfilters==1.4.2
 parso==0.6.2
 pexpect==4.8.0
 pickleshare==0.7.5
-Pillow==7.1.1
+Pillow==8.1.1
 pip-chill==1.0.0
 plotly==4.6.0
 pluggy==0.7.1
